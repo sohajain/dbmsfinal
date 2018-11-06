@@ -8,5 +8,6 @@ def store(request):
     count = Book.objects.all()
     context = {
         'count': count,
+        'page':'welcome to mystery books!'
     }
-    return render(request, 'store.html',context)
+    return render(request, 'base.html',context)
