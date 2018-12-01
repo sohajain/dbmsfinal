@@ -38,9 +38,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social.apps.django_app.default',
+    'paypalrestsdk',
+    'registration',
+    'crispy_forms',
     'bootstrap3',
     'bootstrap_themes',
-    'registration',
     'compressor',
     'store',
 )
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'bookstore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'static', '../store/template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,6 +73,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',
+                 'django.template.context_processors.media',
             ],
         },
     },
@@ -122,6 +125,14 @@ STATICFILES_FINDERS = (
 
 )
 
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+
+
+#crispy FORM tags
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
@@ -129,9 +140,9 @@ LOGIN_REDIRECT_URL = '/store/'
 
 # Email Settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER ="bookcafe157@gmail.com"
-EMAIL_HOST_PASSWORD = "sabcdebookcafe"
+EMAIL_HOST = "smtp.mailgun.org"
+EMAIL_HOST_USER ="postmaster@sandbox64910742f6cb456ba0790285561402e6.mailgun.org"
+EMAIL_HOST_PASSWORD = "1045ef4971aafd2c2af6733a63cc1e08-4412457b-dcb35a7b"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "martinduys@gmail.com"
